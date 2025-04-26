@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Double
 from db.database import Base
 
 
-class Receipt(Base):
+class Product(Base):
     __tablename__ = "product"
 
     id = Column(Integer, primary_key=True, index=True)
