@@ -1,4 +1,4 @@
-# schemas/item.py
+# schemas/receipt.py
 from pydantic import BaseModel
 
 
@@ -7,7 +7,7 @@ class ItemBase(BaseModel):
     client_name: str
     client_email: str
     total_price: float
-    
+
 class ItemCreate(ItemBase):
     pass
 
