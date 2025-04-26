@@ -2,17 +2,16 @@
 from pydantic import BaseModel
 
 
-class ItemBase(BaseModel):
+class ReceiptBase(BaseModel):
     date: str
     client_name: str
     client_email: str
-    total_price: float
 
-class ItemCreate(ItemBase):
+class ReceiptCreate(ReceiptBase):
     pass
 
 
-class ItemResponse(ItemBase):
+class Receiptponse(ReceiptBase):
     id: int
 
     class Config:
