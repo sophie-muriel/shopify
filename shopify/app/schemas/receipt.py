@@ -17,3 +17,7 @@ class ReceiptResponse(ReceiptBase):
 
     class Config:
         orm_mode = True
+
+class ReceiptProductCreate(BaseModel):
+    product_id: int
+    receipt_id: int
