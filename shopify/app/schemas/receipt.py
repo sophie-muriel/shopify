@@ -8,11 +8,12 @@ class ReceiptBase(BaseModel):
     client_email: str
 
 class ReceiptCreate(ReceiptBase):
-    pass
+    products_list: list
 
 
-class Receiptponse(ReceiptBase):
+class ReceiptResponse(ReceiptBase):
     id: int
+    total_price: float
 
     class Config:
         orm_mode = True
