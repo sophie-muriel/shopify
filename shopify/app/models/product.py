@@ -9,4 +9,4 @@ class Product(Base):
     id = Column(Integer, primary_key=True, index=True)
     product_name = Column(String(50))
     description = Column(String(120))
-    total_price = Column(Double)
+    price = Column(Double)
