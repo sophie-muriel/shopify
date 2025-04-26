@@ -1,5 +1,5 @@
 # models/receipt.py
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Double
 from db.database import Base
 
 
