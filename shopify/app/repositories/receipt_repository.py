@@ -1,4 +1,4 @@
-# repositories/item_repository.py
+# repositories/receipt_repository.py
 from sqlalchemy.orm import Session
 from models.receipt import Receipt
 from schemas.receipt import ReceiptCreate
