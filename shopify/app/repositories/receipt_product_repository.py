@@ -17,7 +17,7 @@ def get_receipt_product(db: Session, receipt_product_id: int):
 
 
 def delete_receipt(db: Session, receipt_id: int):
-    db_receipt = get_receipt(db, receipt_id)
+    db_receipt = get_receipt_product(db, receipt_id)
     if not db_receipt:
         return None
     db.delete(db_receipt)
