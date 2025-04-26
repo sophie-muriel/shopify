@@ -1,4 +1,4 @@
-# models/item.py
+# models/receipt.py
 from sqlalchemy import Column, Integer, String, Boolean
 from db.database import Base
 
