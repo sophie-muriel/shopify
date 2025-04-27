@@ -1,0 +1,37 @@
+# services/receipt_service.py
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
+from ..repositories.receipt_repository import create_receipt, get_receipt, update_receipt, delete_receipt
+from ..repositories.receipt_product_repository import create_receipt_product, get_receipt_product, delete_receipt_product
+from ..schemas.receipt import ReceiptCreate, ReceiptProductCreate
+
+
+def create_new_receipt(db: Session, receipt: ReceiptCreate):
+    try:
+        db.begin()
+
+        new_receipt = create_receipt(db, receipt)
+
+        for product in receipt.products_list:
+            receipt_product = ReceiptProductCreate(
+                receipt_id = new_receipt.id,
+                product_id = product.product_id,
+                quantity = product.quantity
+            )
+            create_receipt_product(db, receipt_product)  
+
+        db.commit()
+
+        return new_receipt
+
+    except SQLAlchemyError as e:
+        db.rollback()
+        raise e 
+
+
+def fetch_receipt(db: Session, receipt_id: int):
+    return get_receipt(db, receipt_id)
+
+
+def delete_existing_receipt(db: Session, receipt_id: int):
+    return delete_receipt(db, receipt_id)
