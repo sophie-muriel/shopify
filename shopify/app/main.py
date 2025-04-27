@@ -7,6 +7,7 @@ import os
 
 from .api.v1 import product_routes
 from .api.v1 import receipt_routes
+from .api.v1 import receipt_product_routes
 
 # Database configuration
 DATABASE_URL = os.getenv(
@@ -46,3 +47,6 @@ app.include_router(product_routes.router,
 
 app.include_router(receipt_routes.router,
                    prefix="/v1/receipt", tags=["Receipts"])
+
+app.include_router(receipt_product_routes.router,
+                   prefix="/v1/receipt_product", tags=["Receipts x Products"])
