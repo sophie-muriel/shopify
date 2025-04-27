@@ -1,5 +1,6 @@
 # models/product.py
-from sqlalchemy import Column, Integer, String, Double
+from sqlalchemy import Column, Integer, String, Double, ForeignKey
+from sqlalchemy.orm import relationship
 from ..db.database import Base
 
 
@@ -10,3 +11,5 @@ class Product(Base):
     product_name = Column(String(50))
     description = Column(String(120))
     price = Column(Double)
+
+    receipts = relationship("Receipt_product", back_populates="product")
