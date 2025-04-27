@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
 
-from app.api.v1 import product_ruotes
+from shopify.app.api.v1 import product_routes
 
 # Database configuration
 DATABASE_URL = os.getenv(
@@ -37,4 +37,4 @@ app = FastAPI(
     },
 )
 
-app.include_router(product_ruotes.router, prefix="/v1/product", tags=["Products"])
+app.include_router(product_routes.router, prefix="/v1/product", tags=["Products"])
