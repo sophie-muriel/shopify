@@ -13,7 +13,7 @@ def fetch_product(db: Session, product_id: int):
 
 
 def update_existing_product(db: Session, product_id: int, product: ProductCreate):
-   return update_product(db, product_id, product)
+    return update_product(db, product_id, product)
 
 
 def delete_existing_product(db: Session, product_id: int):
