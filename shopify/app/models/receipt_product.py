@@ -11,3 +11,4 @@ class Receipt_product(Base):
     id = Column(Integer, primary_key=True, index=True)
     receipt_id = Column(Integer, ForeignKey(Receipt.id))
     product_id = Column(Integer, ForeignKey(Product.id))
+    quantity = Column(Integer)
