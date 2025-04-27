@@ -1,7 +1,7 @@
 # api/v1/receipt_product_routes.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ...schemas.receipt_schema import ReceiptProductCreate, ReceiptProductResponse
+from ...schemas.receipt_product_schema import ReceiptProductCreate, ReceiptProductResponse
 from ...services.receipt_product_service import create_new_receipt_product, fetch_receipt_product, delete_existing_receipt_product
 from ...db.session import get_db
 
