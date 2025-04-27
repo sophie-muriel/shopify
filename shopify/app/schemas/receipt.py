@@ -1,5 +1,11 @@
 # schemas/receipt.py
 from pydantic import BaseModel
+from typing import List
+
+class ReceiptProductCreate(BaseModel):
+    receipt_id: int
+    product_id: int
+    quantity: int
 
 
 class ReceiptBase(BaseModel):
@@ -7,8 +13,9 @@ class ReceiptBase(BaseModel):
     client_name: str
     client_email: str
 
+
 class ReceiptCreate(ReceiptBase):
-    products_list: list
+    products_list: List['ReceiptProductCreate']
 
 
 class ReceiptResponse(ReceiptBase):
@@ -18,6 +25,4 @@ class ReceiptResponse(ReceiptBase):
     class Config:
         orm_mode = True
 
-class ReceiptProductCreate(BaseModel):
-    product_id: int
-    receipt_id: int
+    
