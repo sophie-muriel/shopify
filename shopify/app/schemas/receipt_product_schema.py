@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 
 class ReceiptProductBase(BaseModel):
-    receipt_id: int
     product_id: int
     quantity: int
 
@@ -14,6 +13,7 @@ class ReceiptProductCreate(ReceiptProductBase):
 
 class ReceiptProductResponse(ReceiptProductBase):
     id: int
+    receipt_id: int
 
     class Config:
         orm_mode = True
