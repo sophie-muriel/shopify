@@ -5,7 +5,7 @@ from ..db.database import Base
 
 
 class Receipt(Base):
-    __tablename__ = "receipt"
+    __tablename__ = "receipts"
 
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date)

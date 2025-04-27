@@ -7,7 +7,7 @@ from ..models.receipt import Receipt
 
 
 class Receipt_product(Base):
-    __tablename__ = "receipt_product"
+    __tablename__ = "receipt_products"
 
     id = Column(Integer, primary_key=True, index=True)
     receipt_id = Column(Integer, ForeignKey(Receipt.id))
