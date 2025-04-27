@@ -16,8 +16,8 @@ def get_receipt_product(db: Session, receipt_product_id: int):
     return db.query(Receipt_product).filter(Receipt_product.id == receipt_product_id).first()
 
 
-def delete_receipt_product(db: Session, receipt_id: int):
-    db_receipt = get_receipt_product(db, receipt_id)
+def delete_receipt_product(db: Session, receipt_product_id: int):
+    db_receipt = get_receipt_product(db, receipt_product_id)
     if not db_receipt:
         return None
     db.delete(db_receipt)
