@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker, Session
 import os
 
 from .api.v1 import product_routes
+from .api.v1 import receipt_routes
 
 # Database configuration
 DATABASE_URL = os.getenv(
@@ -19,12 +20,15 @@ Base = declarative_base()
 Base.metadata.create_all(bind=engine)
 
 # Dependency to get DB session
+
+
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
 
 app = FastAPI(
     root_path="/api",
@@ -37,4 +41,8 @@ app = FastAPI(
     },
 )
 
-app.include_router(product_routes.router, prefix="/v1/product", tags=["Products"])
+app.include_router(product_routes.router,
+                   prefix="/v1/product", tags=["Products"])
+
+app.include_router(receipt_routes.router,
+                   prefix="/v1/receipt", tags=["Receipts"])
