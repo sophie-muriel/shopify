@@ -2,13 +2,7 @@
 from pydantic import BaseModel
 from typing import List
 from datetime import date
-from ..schemas.product_schema import ProductResponse
-from ..schemas.receipt_product_schema import ReceiptProductResponse
-
-
-class ReceiptProductCreate(BaseModel):
-    product_id: int
-    quantity: int
+from ..schemas.receipt_product_schema import ReceiptProductResponse, ReceiptProductCreate
 
 
 class ReceiptBase(BaseModel):

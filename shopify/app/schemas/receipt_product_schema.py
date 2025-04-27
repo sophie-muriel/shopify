@@ -1,5 +1,6 @@
 # schemas/receipt_product_schema.py
 from pydantic import BaseModel
+from ..schemas.product_schema import ProductResponse
 
 
 class ReceiptProductBase(BaseModel):
@@ -11,10 +12,11 @@ class ReceiptProductCreate(ReceiptProductBase):
     pass
 
 
-class ReceiptProductResponse(ReceiptProductBase):
-    product_name: str
-    description: str
-    price: float
+class ReceiptProductResponse(BaseModel):
+    id: int
+    quantity: int
+    total_price: float
+    product: ProductResponse
 
     class Config:
         orm_mode = True

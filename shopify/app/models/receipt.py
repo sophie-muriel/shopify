@@ -1,6 +1,7 @@
 # models/receipt.py
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import relationship
+from datetime import date
 from ..db.database import Base
 
 
@@ -8,8 +9,8 @@ class Receipt(Base):
     __tablename__ = "receipts"
 
     id = Column(Integer, primary_key=True, index=True)
-    date = Column(Date)
-    client_name = Column(String(40))
-    client_email = Column(String(255))
+    date = Column(Date, nullable=False, default=date.today)
+    client_name = Column(String(100))
+    client_email = Column(String(255), index=True)
 
-    products = relationship("Receipt_product", back_populates="receipt")
+    products = relationship("ReceiptProduct", back_populates="receipt")
