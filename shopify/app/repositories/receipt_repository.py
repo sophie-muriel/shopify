@@ -9,18 +9,6 @@ from ..schemas.receipt_product_schema import ReceiptProductCreate
 def create_receipt(db: Session, receipt: ReceiptCreate):
     db_receipt = Receipt(**receipt.dict(exclude={'products_list'}))
     db.add(db_receipt)
-    db.commit()
-    db.refresh(db_receipt)
-
-    for product in receipt.products_list:
-        db_receipt_product = Receipt_product(
-            receipt_id=db_receipt.id,
-            product_id=product.product_id,
-            quantity=product.quantity
-        )
-        db.add(db_receipt_product)
-
-    db.commit()
     return db_receipt
 
 
