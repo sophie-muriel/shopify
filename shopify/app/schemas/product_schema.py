@@ -7,8 +7,10 @@ class ProductBase(BaseModel):
     description: str
     price: float
 
+
 class ProductCreate(ProductBase):
     pass
+
 
 class ProductResponse(ProductBase):
     id: int
