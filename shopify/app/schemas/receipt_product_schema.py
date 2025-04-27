@@ -14,6 +14,9 @@ class ReceiptProductCreate(ReceiptProductBase):
 class ReceiptProductResponse(ReceiptProductBase):
     id: int
     receipt_id: int
+    product_name: str
+    description: str
+    price: float
 
     class Config:
         orm_mode = True
