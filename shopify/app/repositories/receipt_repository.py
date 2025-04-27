@@ -1,14 +1,26 @@
 # repositories/receipt_repository.py
 from sqlalchemy.orm import Session
 from ..models.receipt import Receipt
+from ..models.receipt_product import Receipt_product
 from ..schemas.receipt_schema import ReceiptCreate
+from ..schemas.receipt_product_schema import ReceiptProductCreate
 
 
 def create_receipt(db: Session, receipt: ReceiptCreate):
-    db_receipt = Receipt(**receipt.dict())
+    db_receipt = Receipt(**receipt.dict(exclude={'products_list'}))
     db.add(db_receipt)
     db.commit()
     db.refresh(db_receipt)
+
+    for product in receipt.products_list:
+        db_receipt_product = Receipt_product(
+            receipt_id=db_receipt.id,
+            product_id=product.product_id,
+            quantity=product.quantity
+        )
+        db.add(db_receipt_product)
+
+    db.commit()
     return db_receipt
 
 
@@ -20,6 +32,7 @@ def update_receipt(db: Session, receipt_id: int, receipt: ReceiptCreate):
     db_receipt = get_receipt(db, receipt_id)
     if not db_receipt:
         return None
+
     db_receipt.date = receipt.date
     db_receipt.client_name = receipt.client_name
     db_receipt.client_email = receipt.client_email
