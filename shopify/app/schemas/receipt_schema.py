@@ -8,13 +8,16 @@ class ReceiptProductCreate(BaseModel):
     product_id: int
     quantity: int
 
+
 class ReceiptBase(BaseModel):
     date: str
     client_name: str
     client_email: str
 
+
 class ReceiptCreate(ReceiptBase):
     products_list: List['ReceiptProductCreate']
+
 
 class ReceiptResponse(ReceiptBase):
     id: int

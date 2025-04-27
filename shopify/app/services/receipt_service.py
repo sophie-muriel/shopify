@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from ..repositories.receipt_repository import create_receipt, get_receipt, update_receipt, delete_receipt
 from ..repositories.receipt_product_repository import create_receipt_product, get_receipt_product, delete_receipt_product
-from ..schemas.receipt import ReceiptCreate, ReceiptProductCreate
+from ..schemas.receipt_schema import ReceiptCreate, ReceiptProductCreate
 
 
 def create_new_receipt(db: Session, receipt: ReceiptCreate):
@@ -14,11 +14,11 @@ def create_new_receipt(db: Session, receipt: ReceiptCreate):
 
         for product in receipt.products_list:
             receipt_product = ReceiptProductCreate(
-                receipt_id = new_receipt.id,
-                product_id = product.product_id,
-                quantity = product.quantity
+                receipt_id=new_receipt.id,
+                product_id=product.product_id,
+                quantity=product.quantity
             )
-            create_receipt_product(db, receipt_product)  
+            create_receipt_product(db, receipt_product)
 
         db.commit()
 
@@ -26,7 +26,7 @@ def create_new_receipt(db: Session, receipt: ReceiptCreate):
 
     except SQLAlchemyError as e:
         db.rollback()
-        raise e 
+        raise e
 
 
 def fetch_receipt(db: Session, receipt_id: int):

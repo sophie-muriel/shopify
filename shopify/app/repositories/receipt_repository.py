@@ -1,7 +1,7 @@
 # repositories/receipt_repository.py
 from sqlalchemy.orm import Session
 from ..models.receipt import Receipt
-from ..schemas.receipt import ReceiptCreate
+from ..schemas.receipt_schema import ReceiptCreate
 
 
 def create_receipt(db: Session, receipt: ReceiptCreate):
@@ -17,15 +17,15 @@ def get_receipt(db: Session, receipt_id: int):
 
 
 def update_receipt(db: Session, receipt_id: int, receipt: ReceiptCreate):
-   db_receipt = get_receipt(db, receipt_id)
-   if not db_receipt:
-       return None
-   db_receipt.date = receipt.date
-   db_receipt.client_name = receipt.client_name
-   db_receipt.client_email = receipt.client_email
-   db.commit()
-   db.refresh(db_receipt)
-   return db_receipt
+    db_receipt = get_receipt(db, receipt_id)
+    if not db_receipt:
+        return None
+    db_receipt.date = receipt.date
+    db_receipt.client_name = receipt.client_name
+    db_receipt.client_email = receipt.client_email
+    db.commit()
+    db.refresh(db_receipt)
+    return db_receipt
 
 
 def delete_receipt(db: Session, receipt_id: int):
