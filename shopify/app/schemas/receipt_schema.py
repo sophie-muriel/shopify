@@ -1,10 +1,10 @@
-# schemas/receipt.py
+# schemas/receipt_schema.py
 from pydantic import BaseModel
 from typing import List
+from ..schemas.product_schema import ProductResponse
 
 
 class ReceiptProductCreate(BaseModel):
-    receipt_id: int
     product_id: int
     quantity: int
 
@@ -16,12 +16,13 @@ class ReceiptBase(BaseModel):
 
 
 class ReceiptCreate(ReceiptBase):
-    products_list: List['ReceiptProductCreate']
+    products_list: List[ReceiptProductCreate]
 
 
 class ReceiptResponse(ReceiptBase):
     id: int
     total_price: float
+    products: List[ReceiptProductCreate]
 
     class Config:
         orm_mode = True
