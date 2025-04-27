@@ -1,6 +1,7 @@
 # schemas/receipt_schema.py
 from pydantic import BaseModel
 from typing import List
+from datetime import date
 from ..schemas.product_schema import ProductResponse
 
 
@@ -10,7 +11,7 @@ class ReceiptProductCreate(BaseModel):
 
 
 class ReceiptBase(BaseModel):
-    date: str
+    date: date
     client_name: str
     client_email: str
 
@@ -22,7 +23,7 @@ class ReceiptCreate(ReceiptBase):
 class ReceiptResponse(ReceiptBase):
     id: int
     total_price: float
-    products: List[ReceiptProductCreate]
+    products: List[ProductResponse]
 
     class Config:
         orm_mode = True
