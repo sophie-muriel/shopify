@@ -22,16 +22,16 @@ def get_product_route(product_id: int, db: Session = Depends(get_db)):
     return db_product
 
 
-@router.put("/update/{product_id}", response_model=ProductResponse)
-def function_one(product_id: int, product: ProductCreate, db: Session = Depends(get_db)):
+@router.put("/{product_id}", response_model=ProductResponse)
+def update_product_route(product_id: int, product: ProductCreate, db: Session = Depends(get_db)):
     db_product = update_existing_product(db, product_id, product)
     if not db_product:
         raise HTTPException(status_code=404, detail="Product not found")
     return db_product
 
 
-@router.delete("/delete/{product_id}")
-def function_two(product_id: int, db: Session = Depends(get_db)):
+@router.delete("/{product_id}", response_model=dict)
+def delete_product_route(product_id: int, db: Session = Depends(get_db)):
     db_product = delete_existing_product(db, product_id)
     if not db_product:
         raise HTTPException(status_code=404, detail="Product not found")
