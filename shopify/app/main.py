@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
 
-from shopify.app.api.v1 import product_routes
+from .api.v1 import product_routes
 
 # Database configuration
 DATABASE_URL = os.getenv(

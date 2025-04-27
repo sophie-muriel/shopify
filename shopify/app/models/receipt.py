@@ -1,6 +1,6 @@
 # models/receipt.py
 from sqlalchemy import Column, Integer, String, Double
-from app.db.database import Base
+from ..db.database import Base
 
 
 class Receipt(Base):

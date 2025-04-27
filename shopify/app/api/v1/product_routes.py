@@ -1,9 +1,9 @@
 # api/v1/product_routes.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.product import ProductCreate, ProductResponse
-from app.services.product_service import create_new_product, fetch_product, update_existing_product, delete_existing_product
-from app.db.session import get_db
+from ...schemas.product import ProductCreate, ProductResponse
+from ...services.product_service import create_new_product, fetch_product, update_existing_product, delete_existing_product
+from ...db.session import get_db
 
 router = APIRouter()
 
