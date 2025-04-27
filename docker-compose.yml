@@ -4,9 +4,9 @@ services:
     container_name: traefik
     restart: unless-stopped
     ports:
-      - "0.0.0.0:5060:85"
-      - "0.0.0.0:5061:443"
-      - "0.0.0.0:5062:8080"
+      - "0.0.0.0:5065:85"
+      - "0.0.0.0:5066:443"
+      - "0.0.0.0:5067:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
