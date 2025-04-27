@@ -5,7 +5,6 @@ from pydantic import BaseModel
 class ProductBase(BaseModel):
     product_name: str
     description: str
-    client_email: str
     price: float
 
 class ProductCreate(ProductBase):
