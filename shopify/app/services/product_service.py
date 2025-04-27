@@ -1,7 +1,7 @@
 # services/product_service.py
 from sqlalchemy.orm import Session
-from repositories.product_repository import create_product, get_product, update_product, delete_product
-from schemas.product import ProductCreate
+from app.repositories.product_repository import create_product, get_product, update_product, delete_product
+from app.schemas.product import ProductCreate
 
 
 def create_new_product(db: Session, product: ProductCreate):

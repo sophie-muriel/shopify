@@ -1,8 +1,8 @@
 # models/receipt_product.py
 from sqlalchemy import Column, Integer, ForeignKey
-from db.database import Base
-from models.product import Product
-from models.receipt import Receipt
+from app.db.database import Base
+from app.models.product import Product
+from app.models.receipt import Receipt
 
 
 class Receipt_product(Base):

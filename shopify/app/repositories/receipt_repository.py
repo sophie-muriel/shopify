@@ -1,7 +1,7 @@
 # repositories/receipt_repository.py
 from sqlalchemy.orm import Session
-from models.receipt import Receipt
-from schemas.receipt import ReceiptCreate
+from app.models.receipt import Receipt
+from app.schemas.receipt import ReceiptCreate
 
 
 def create_receipt(db: Session, receipt: ReceiptCreate):

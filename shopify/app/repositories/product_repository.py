@@ -1,7 +1,7 @@
 # repositories/product_repository.py
 from sqlalchemy.orm import Session
-from models.product import Product
-from schemas.product import ProductCreate
+from app.models.product import Product
+from app.schemas.product import ProductCreate
 
 
 def create_product(db: Session, product: ProductCreate):
