@@ -6,29 +6,13 @@ from sqlalchemy.orm import sessionmaker, Session
 import os
 
 from .api.v1 import product_routes
-from .api.v1 import receipt_routes
-from .api.v1 import receipt_product_routes
 
-# Database configuration
 DATABASE_URL = os.getenv(
     "DATABASE_URL", ""
 )
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-
-# Create tables
-Base.metadata.create_all(bind=engine)
-
-# Dependency to get DB session
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 app = FastAPI(
@@ -44,9 +28,3 @@ app = FastAPI(
 
 app.include_router(product_routes.router,
                    prefix="/v1/product", tags=["Products"])
-
-app.include_router(receipt_routes.router,
-                   prefix="/v1/receipt", tags=["Receipts"])
-
-app.include_router(receipt_product_routes.router,
-                   prefix="/v1/receipt_product", tags=["Receipts x Products"])
