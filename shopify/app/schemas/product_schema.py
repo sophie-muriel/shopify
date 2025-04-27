@@ -1,4 +1,4 @@
-# schemas/product.py
+# schemas/product_schema.py
 from pydantic import BaseModel
 
 
