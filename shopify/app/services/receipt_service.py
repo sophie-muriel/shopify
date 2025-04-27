@@ -38,8 +38,6 @@ def create_new_receipt(db: Session, receipt: ReceiptCreate):
                 Product.id == receipt_product.product_id).first()
             if db_product:
                 receipt_product_response = ReceiptProductResponse(
-                    id=receipt_product.id,
-                    receipt_id=receipt_product.receipt_id,
                     product_id=receipt_product.product_id,
                     quantity=receipt_product.quantity,
                     product_name=db_product.product_name,
@@ -75,8 +73,6 @@ def fetch_receipt(db: Session, receipt_id: int):
             Product.id == receipt_product.product_id).first()
         if db_product:
             receipt_product_response = ReceiptProductResponse(
-                id=receipt_product.id,
-                receipt_id=receipt_product.receipt_id,
                 product_id=receipt_product.product_id,
                 quantity=receipt_product.quantity,
                 product_name=db_product.product_name,
