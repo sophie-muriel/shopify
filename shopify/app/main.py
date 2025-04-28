@@ -27,7 +27,6 @@ app = FastAPI(
     },
 )
 
-#app.include_router(product_routes.router,prefix="/v1/product", tags=["Products"])
-app.include_router(owner_routes.router,prefix="/v1/owner", tags=["Owners"])
+app.include_router(owner_routes.router, prefix="/owner", tags=["Owners"])
 
-app.include_router(pet_routes.router,prefix="/v1/pet", tags=["Pets"])
+app.include_router(pet_routes.router, prefix="/pet", tags=["Pets"])
