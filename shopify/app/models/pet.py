@@ -2,19 +2,7 @@
 from sqlalchemy import Column, Integer, String, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from ..db.database import Base
-from enum import Enum as PyEnum
-
-
-class SexEnum(PyEnum):
-    """
-    Enum representing the sex of a pet.
-
-    Attributes:
-        male: Represents male sex.
-        female: Represents female sex.
-    """
-    male = "Male"
-    female = "Female"
+from ..commons.enums import SexEnum
 
 
 class Pet(Base):
@@ -26,7 +14,7 @@ class Pet(Base):
         name (str): The name of the pet. This is a required field.
         species (str): The species of the pet. This is a required field.
         breed (str): The breed of the pet. Optional field.
-        sex (SexEnum): The sex of the pet. Can be 'Male' or 'Female'. This is a required field.
+        sex (SexEnum): The sex of the pet. Can be 'male' or 'female'. This is a required field.
         owner_id (int): The unique identifier of the pet's owner. This is a required field.
 
     Relationships:
@@ -39,6 +27,7 @@ class Pet(Base):
     species = Column(String(100), nullable=False)
     breed = Column(String(100))
     sex = Column(Enum(SexEnum), nullable=False)
-    owner_id = Column(Integer, ForeignKey("owners.id"), nullable=False)
+    owner_id = Column(Integer, ForeignKey(
+        'owners.id', ondelete='CASCADE'), nullable=False)
 
     owner = relationship("Owner", back_populates="pets")

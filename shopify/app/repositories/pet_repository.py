@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from fastapi import HTTPException
 from ..models.pet import Pet
-# from ..models.owner import Owner
+from ..models.owner import Owner
 from ..schemas.pet_schema import PetCreate
 
 
@@ -22,17 +22,15 @@ def create_pet(db: Session, pet: PetCreate):
         Exception: If there is an error creating the pet.
     """
     try:
-        # db_owner = db.query(Owner).filter(Owner.id == pet.owner_id).first()
-        # if not db_owner:
-        #     raise HTTPException(status_code=404, detail="Owner not found.")
-
-        sex_value = pet.sex.value
+        db_owner = db.query(Owner).filter(Owner.id == pet.owner_id).first()
+        if not db_owner:
+            raise HTTPException(status_code=404, detail="Owner not found.")
 
         db_pet = Pet(
             name=pet.name,
             species=pet.species,
             breed=pet.breed,
-            sex=sex_value,
+            sex=pet.sex.value,
             owner_id=pet.owner_id
         )
 
@@ -99,14 +97,14 @@ def update_pet(db: Session, pet_id: int, pet: PetCreate):
     if not db_pet:
         return None
 
-    # db_owner = db.query(Owner).filter(Owner.id == pet.owner_id).first()
-    # if not db_owner:
-    #     raise HTTPException(status_code=404, detail="Owner not found.")
+    db_owner = db.query(Owner).filter(Owner.id == pet.owner_id).first()
+    if not db_owner:
+        raise HTTPException(status_code=404, detail="Owner not found.")
 
     db_pet.name = pet.name
     db_pet.species = pet.species
     db_pet.breed = pet.breed
-    db_pet.sex = pet.sex
+    db_pet.sex = pet.sex.value
     db_pet.owner_id = pet.owner_id
 
     try:
