@@ -1,3 +1,4 @@
+# models/owner.py
 from sqlalchemy import Column, Integer, String, Numeric
 from sqlalchemy.orm import relationship
 from ..db.database import Base
