@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import os
 
-from .api.v1 import product_routes
+from .api.v1 import owner_routes
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL", ""
@@ -26,5 +26,5 @@ app = FastAPI(
     },
 )
 
-app.include_router(product_routes.router,
-                   prefix="/v1/product", tags=["Products"])
+#app.include_router(product_routes.router,prefix="/v1/product", tags=["Products"])
+app.include_router(owner_routes.router,prefix="/v1/owner", tags=["Owners"])
