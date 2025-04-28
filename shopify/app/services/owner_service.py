@@ -1,7 +1,7 @@
 # services/owner_service.py
 from sqlalchemy.orm import Session
 from ..repositories.owner_repository import create_owner, get_owner, update_owner, delete_owner
-# from ..repositories.pet_repository import delete_all_pets
+from ..repositories.pet_repository import delete_all_pets
 from ..schemas.owner_schema import OwnerCreate
 
 
@@ -84,5 +84,5 @@ def delete_existing_owner(db: Session, owner_id: int):
     Raises:
         HTTPException: If there is an error deleting the owner or their pets.
     """
-    #delete_all_pets(db, owner_id)  # Deletes associated pets first
+    delete_all_pets(db, owner_id)  # Deletes associated pets first
     return delete_owner(db, owner_id)
