@@ -1,5 +1,5 @@
 # models/pet.py
-from sqlalchemy import Column, Integer, String, Enum
+from sqlalchemy import Column, Integer, String, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from ..db.database import Base
 from enum import Enum as PyEnum
@@ -39,6 +39,6 @@ class Pet(Base):
     species = Column(String(100), nullable=False)
     breed = Column(String(100))
     sex = Column(Enum(SexEnum), nullable=False)
-    owner_id = Column(Integer, nullable=False)
+    owner_id = Column(Integer, ForeignKey("owners.id"), nullable=False)
 
-    # owner = relationship("Owner", back_populates="pets")
+    owner = relationship("Owner", back_populates="pets")
