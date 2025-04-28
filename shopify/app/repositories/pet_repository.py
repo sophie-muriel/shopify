@@ -156,15 +156,13 @@ def delete_all_pets(db: Session, owner_id: int):
         dict: A dictionary with a success message or an error message if no pets were found.
 
     Raises:
-        HTTPException: If no pets are found for the given owner.
         Exception: If there is an error deleting the pets.
     """
     try:
         pets_to_delete = db.query(Pet).filter(Pet.owner_id == owner_id).all()
 
         if not pets_to_delete:
-            raise HTTPException(
-                status_code=404, detail="No pets found for this owner.")
+            return {"message": "No pets found for this owner."}
 
         for pet in pets_to_delete:
             db.delete(pet)
