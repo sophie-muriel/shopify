@@ -157,6 +157,11 @@ def delete_all_pets(db: Session, owner_id: int):
         Exception: If there is an error deleting the pets.
     """
     try:
+        db_owner = db.query(Owner).filter(Owner.id == owner_id).first()
+        if not db_owner:
+            print(f"Owner with ID {owner_id} not found.")
+            return {"message": "Owner not found."}
+
         pets_to_delete = db.query(Pet).filter(Pet.owner_id == owner_id).all()
 
         if not pets_to_delete:
@@ -166,7 +171,7 @@ def delete_all_pets(db: Session, owner_id: int):
             db.delete(pet)
 
         db.commit()
-        return {"message": "All pets deleted successfully for owner with id {owner_id}"}
+        return {"message": f"All pets deleted successfully for owner with id {owner_id}"}
     except SQLAlchemyError:
         db.rollback()
         raise Exception("Error deleting pets")
