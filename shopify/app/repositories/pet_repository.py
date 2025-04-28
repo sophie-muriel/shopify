@@ -26,13 +26,11 @@ def create_pet(db: Session, pet: PetCreate):
         if not db_owner:
             raise HTTPException(status_code=404, detail="Owner not found.")
 
-        sex_value = pet.sex.value
-
         db_pet = Pet(
             name=pet.name,
             species=pet.species,
             breed=pet.breed,
-            sex=sex_value,
+            sex=pet.sex.value,
             owner_id=pet.owner_id
         )
 
@@ -106,7 +104,7 @@ def update_pet(db: Session, pet_id: int, pet: PetCreate):
     db_pet.name = pet.name
     db_pet.species = pet.species
     db_pet.breed = pet.breed
-    db_pet.sex = pet.sex
+    db_pet.sex = pet.sex.value
     db_pet.owner_id = pet.owner_id
 
     try:
